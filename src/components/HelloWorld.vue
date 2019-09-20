@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{this.$route.params.id}}</h1>
+    <h1>{{this.$route.params.postid}}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -35,7 +36,15 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }
+  },
+  mounted() {
+    let id1 = this.$route.params.id
+   this.axios.get(`http://localhost:8091/?id=${id1}`).then((response) => {
+        console.log(response)
+      })
+    // console.log(this.$route.params)
+  },
+  
 }
 </script>
 
